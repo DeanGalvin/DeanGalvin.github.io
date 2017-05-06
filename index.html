@@ -30,7 +30,6 @@ function calculateTax() {
 		taxText = "40%";
 		ceilingText = "Unlimited";
 		tax = 40.0;
-		ceiling = 99999999999;
 	}
 	else if (propertyPrice > 500000 && propertyPrice <= 1000000) {
 		taxText = "33.30%";
@@ -58,9 +57,13 @@ function calculateTax() {
 	}
 
 	tax = ((bidPrice / 100) * tax).toFixed(2);
-	ceiling = propertyPrice * ceiling;
+	if (ceiling != 0) {
+		ceiling = propertyPrice * ceiling;
+	} else {
+		var ceiling = "Unlimited";
+	}
 
-	document.getElementById("output").innerHTML = "Property Tax Rate: " + taxText + "<br>" + "Property Tax: " + tax + "<br>" + "Ceiling Bracket: " + ceilingText + "<br>" + "Auction Ceiling: " + ceiling;
+	document.getElementById("output").innerHTML = "Property Tax Rate: " + taxText + "<br>" + "Sales Tax: " + tax + "<br>" + "Ceiling Bracket: " + ceilingText + "<br>" + "Auction Ceiling: " + ceiling;
 }
 </script>
 
